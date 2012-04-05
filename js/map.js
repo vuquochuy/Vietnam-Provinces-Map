@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    var paper = new Raphael('vietnammap', '1220.464', '1913.021'); 
+    var paper = new ScaleRaphael('vietnammap', '1220.464', '1913.021'); 
+    paper.scaleAll(0.3);
 
     var map = getPaths(paper, {
         fill: "#DFDFDF",
