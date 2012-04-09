@@ -1,17 +1,24 @@
 $(document).ready(function() {
     var paper = new ScaleRaphael('vietnammap', '1220.464', '1913.021'); 
-    paper.scaleAll(0.3);
+    paper.scaleAll(1);
 
     paper.setStart();
 
     for (var province in vietnam.shapes) {
-        paper.path(vietnam.shapes[province]).attr({
+        var p = paper.path(vietnam.shapes[province]);
+        p.attr({
             stroke: "#FEFEFE", 
-            fill: "#DFDFDF", 
+            fill: "#DFDFDF",
+            title: vietnam.names[province],
             "stroke-width": .2,
             "stroke-linejoin": "round", 
             "stroke-opacity": 0.25
         });
+        (function(p, province){
+            p.onclick = function(){
+                //alert(province);
+            };
+        })(p[0], province);
     } 
 
     var vn = paper.setFinish();   
@@ -24,5 +31,5 @@ $(document).ready(function() {
             this.stop().animate({fill: this.c}, 300);
         };
 
-    vn.hover(over, out);    
+    vn.hover(over, out);  
 });
